@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Footer from './Footer';
 import GroupedTeamMembers from './components/GroupedTeamMembers';
 import Nav from './components/Nav';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {Routes, Route, Router} from 'react-router-dom';
 
 function App() {
 
@@ -83,20 +83,20 @@ function handleEmployeeCardClicked(){
 
   return (
   
-    <div>
+    <Router>
       
       <Header selectedTeam={selectedTeam}
       teamMemberCount={employees.filter((employee)=>employee.teamName===selectedTeam).length}/>
-      
-      <Employees employees={employees}
+      <Routes>
+      <Route path='/' element={<Employees employees={employees}
       selectedTeam={selectedTeam}
       handleEmployeeCardClicked={handleEmployeeCardClicked}
-      handleTeamSelectionChange={handleTeamSelectionChange}/>
-      
+      handleTeamSelectionChange={handleTeamSelectionChange}/>}></Route>
+      </Routes>
      <Footer/>
-
+      </Router>
       
-    </div>
+    
     
   );
 }
